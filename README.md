@@ -1,1 +1,171 @@
-# Linux-home-server-automated-backup-and-monitoring
+# Ubuntu home server 🐧
+This physical Ubuntu home server covers my family’s data backup needs in a local private network using Syncthing and custom Bash scripts for system monitoring, and network security policies configuration.
+
+- Sharing of local network files with Samba (Windows <--> Ubuntu <--> Fedora).
+- Reverse proxy setup for Syncthing using Nginx.
+- Virtual Private Network set up using WireGuard.
+- Server ”Wake on LAN” from main computer and smartphone.
+- Automated backups using Timeshift and server file logging using Cron jobs.
+
+
+## Setup
+
+### \#1. SSH access from home network
+- [x] Home server should be accessible from the main computer.
+```bash
+ssh <user>@<ip>
+```
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![image](https://github.com/user-attachments/assets/3c4c4520-d841-4c45-bfcc-ef068463f432)
+</details>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#2. Network files backup
+- [x] Selected files should be sent automatically to central hard drive each week.
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![Image](https://github.com/user-attachments/assets/848d8fff-ab2f-4cd1-b68e-c8b7c171a7a6)
+</details>
+
+![Image](https://github.com/user-attachments/assets/236793ed-6d3d-489a-b751-fc18dbf16180)
+
+- [x] Selected files should be sent to central hard drive when prompted.
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![Image](https://github.com/user-attachments/assets/13209c54-7bef-4d44-a64b-867fe91521f1)
+</details>
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#3. Install Samba
+- [x] Install Samba.
+`sudo apt install samba`
+
+- [x] Make a shared folder.
+`sudo mkdir /media/myfiles`
+
+- [x] Make main user owner of shared folder.
+`sudo chown $USER: /media/myfiles`
+
+- [x] Create a user and password for shared folder.
+`sudo smbpasswd -a <user>`
+
+- [x] Configure folder location in Samba config file at the end of the file.
+`sudo nano /etc/samba/smb.conf`
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![Image](https://github.com/user-attachments/assets/ac71b842-df74-4ae7-927c-44ee83c71076)
+</details>
+
+
+
+- [x] Add shared folder on Windows
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![Image](https://github.com/user-attachments/assets/b5e4c3ba-0d39-4053-b698-c1731e4935a9)
+</details>
+
+
+
+- [x] Shared files ready to use!
+
+
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#4. Wake on LAN
+- [x] Network adapter supports Wake-on-LAN 
+```bash
+sudo ethtool <network_adapter>
+```
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![image](https://github.com/user-attachments/assets/0c91aed1-2800-43ea-bc56-442592c9a3d0)
+where: 
+- g = Wake on LAN is enabled for Magic packets.
+- p = Wake on LAN is enabled for unicast packets.
+</details>
+
+
+- [x] Enable Wake-on-LAN
+```bash
+sudo ethtool <network_adapter> | grep "Wake-on"
+```
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![Image](https://github.com/ewardq/Linux-home-server-automated-backup-and-monitoring/assets/72580785/bffb5653-5231-4250-a21b-345e7246d5f2)
+where: 
+- d = Disabled.
+- g  = Wake on LAN is enabled for unicast packets.
+</details>
+
+
+- [x] Make configuration persistent
+For Ubuntu, we have to configure the network adapter on the "netplan" folder:
+```bash
+sudo chmod u+w /etc/netplan/00-installer-config.yaml
+nano /etc/netplan/00-installer-config.yaml
+```
+<details>
+<summary><i>Click here to see result screenshot</i></summary>
+  
+![Image](https://github.com/ewardq/Linux-home-server-automated-backup-and-monitoring/assets/72580785/d96ec6b3-659f-49d9-ad26-afda1087725a)
+</details>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#5. Files backed up log and notification
+- [x] System should keep track of files backed up.
+  - [5.1] Create a script to log size, date of modification and number of files
+  - ```bash
+    #!/bin/bash
+    echo "=======================" >> /media/shared_folder_backup.log
+    ls -lh /media/myfiles/ >> /media/shared_folder_backup.log
+    ```
+
+
+  - [5.2] Change permissions to execute file
+  - ```bash
+    sudo chmod +x /custom_scripts/record_shared_files.sh
+    ```
+
+  - [5.3] Schedule task to execute each day
+     1. Verify if the user has a crontab
+    ```bash
+     crontab -l
+    ```
+     ![Image](https://github.com/user-attachments/assets/05755d18-a1a0-4155-9779-b263e238d8bf)
+
+     2. Create or edit said user crontab
+    ```bash
+     crontab -e
+    ```
+    ![Image](https://github.com/user-attachments/assets/3f4a0773-f4e9-46e8-a058-6aa20dcaa58b)
+
+     3. Schedule task to execute every hour
+    ```bash
+     crontab -e
+    ```
+    ![Image](https://github.com/user-attachments/assets/f0008c71-a74d-4c3e-807c-1827638e348f)
+
+<details>
+<summary><i>Here's the result on the log file</i></summary>
+  
+![Image](https://github.com/user-attachments/assets/0f581032-54f2-4626-9343-8a354810ef5b)
+</details>
+
