@@ -26,20 +26,20 @@ ssh <user>@<ip>
 
 ### \#2. Network files backup
 - [x] Selected files should be sent automatically to central hard drive each week.
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![Image](https://github.com/user-attachments/assets/848d8fff-ab2f-4cd1-b68e-c8b7c171a7a6)
-</details>
+    ![Image](https://github.com/user-attachments/assets/848d8fff-ab2f-4cd1-b68e-c8b7c171a7a6)
+    </details>
 
 ![Image](https://github.com/user-attachments/assets/236793ed-6d3d-489a-b751-fc18dbf16180)
 
 - [x] Selected files should be sent to central hard drive when prompted.
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![Image](https://github.com/user-attachments/assets/13209c54-7bef-4d44-a64b-867fe91521f1)
-</details>
+    ![Image](https://github.com/user-attachments/assets/13209c54-7bef-4d44-a64b-867fe91521f1)
+    </details>
 
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
@@ -61,22 +61,18 @@ ssh <user>@<ip>
 
 - [x] Configure folder location in Samba config file at the end of the file.
 `sudo nano /etc/samba/smb.conf`
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![Image](https://github.com/user-attachments/assets/ac71b842-df74-4ae7-927c-44ee83c71076)
-</details>
-
-
+    ![Image](https://github.com/user-attachments/assets/ac71b842-df74-4ae7-927c-44ee83c71076)
+    </details>
 
 - [x] Add shared folder on Windows
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![Image](https://github.com/user-attachments/assets/b5e4c3ba-0d39-4053-b698-c1731e4935a9)
-</details>
-
-
+    ![Image](https://github.com/user-attachments/assets/b5e4c3ba-0d39-4053-b698-c1731e4935a9)
+    </details>
 
 - [x] Shared files ready to use!
 
@@ -90,28 +86,28 @@ ssh <user>@<ip>
 ```bash
 sudo ethtool <network_adapter>
 ```
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![image](https://github.com/user-attachments/assets/0c91aed1-2800-43ea-bc56-442592c9a3d0)
-where: 
-- g = Wake on LAN is enabled for Magic packets.
-- p = Wake on LAN is enabled for unicast packets.
-</details>
+    ![image](https://github.com/user-attachments/assets/0c91aed1-2800-43ea-bc56-442592c9a3d0)
+    where: 
+      - g = Wake on LAN is enabled for Magic packets.
+      - p = Wake on LAN is enabled for unicast packets.
+    </details>
 
 
 - [x] Enable Wake-on-LAN
 ```bash
 sudo ethtool <network_adapter> | grep "Wake-on"
 ```
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![Image](https://github.com/ewardq/Linux-home-server-automated-backup-and-monitoring/assets/72580785/bffb5653-5231-4250-a21b-345e7246d5f2)
-where: 
-- d = Disabled.
-- g  = Wake on LAN is enabled for unicast packets.
-</details>
+    ![Image](https://github.com/ewardq/Linux-home-server-automated-backup-and-monitoring/assets/72580785/bffb5653-5231-4250-a21b-345e7246d5f2)
+    where: 
+      - d = Disabled.
+      - g  = Wake on LAN is enabled for unicast packets.
+    </details>
 
 
 - [x] Make configuration persistent
@@ -120,11 +116,49 @@ For Ubuntu, we have to configure the network adapter on the "netplan" folder:
 sudo chmod u+w /etc/netplan/00-installer-config.yaml
 nano /etc/netplan/00-installer-config.yaml
 ```
-<details>
-<summary><i>Click here to see result screenshot</i></summary>
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
   
-![Image](https://github.com/ewardq/Linux-home-server-automated-backup-and-monitoring/assets/72580785/d96ec6b3-659f-49d9-ad26-afda1087725a)
-</details>
+    ![Image](https://github.com/ewardq/Linux-home-server-automated-backup-and-monitoring/assets/72580785/d96ec6b3-659f-49d9-ad26-afda1087725a)
+    </details>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#5. Network monitoring
+- [x] The user should be able to see which devices are connected to the network.
+
+  - To monitor the local network, you can use the built-in internet service provider tool. To access this tool, search in the back of your home router and search for the modem IP, user and password.
+![Image](https://github.com/user-attachments/assets/5e51ba13-852e-401b-b461-e280840dd73f)
+
+  - To monitor the local network on Windows, install `WakeMeOnLan`.
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/37f6b6d5-66fb-4390-83b7-cdd8945f22a7)
+      </details>
+
+  - To monitor the local network on the server side (Ubuntu), use `ip addr` to discover the server's network adapter
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/799ee7a6-6dac-4280-9b13-6c6899846503)
+      </details>
+
+  - `npmap <ip>/<mask>`
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/9a5f48f0-6091-417b-b192-700175c41a25)
+      </details>
+
+- [x] The user should be able to blacklist selected users.
+  - Use the network provider built-in tool.
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/54ba8cf0-2fcf-4dc5-b486-76c0e86e41f8)
+      </details>
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
 ---
@@ -177,38 +211,11 @@ nano /etc/netplan/00-installer-config.yaml
 
 ---
 
-### \#5. Network monitoring
-- [x] The user should be able to see which devices are connected to the network.
-
-  - To monitor the local network, you can use the built-in internet service provider tool. To access this tool, search in the back of your home router and search for the modem IP, user and password.
-![Image](https://github.com/user-attachments/assets/5e51ba13-852e-401b-b461-e280840dd73f)
-
-  - To monitor the local network on Windows, install `WakeMeOnLan`.
+### \#7. Automated backup every day
+- [x] Files should be backed up every day without user input.
+  - To back up files daily, configure "Recovery" settings.
     - <details>
-      <summary><i>Click here to see result screenshot</i></summary>
+      <summary><i>Click Here to see result screenshot</i></summary>
   
-      ![Image](https://github.com/user-attachments/assets/37f6b6d5-66fb-4390-83b7-cdd8945f22a7)
+      ![image](https://github.com/user-attachments/assets/2bdc2599-bf07-434d-ab54-7ee4787dd3ba)
       </details>
-
-  - To monitor the local network on the server side (Ubuntu), use `ip addr` to discover the server's network adapter
-    - <details>
-      <summary><i>Click here to see result screenshot</i></summary>
-  
-      ![Image](https://github.com/user-attachments/assets/799ee7a6-6dac-4280-9b13-6c6899846503)
-      </details>
-
-  - `npmap <ip>/<mask>`
-    - <details>
-      <summary><i>Click here to see result screenshot</i></summary>
-  
-      ![Image](https://github.com/user-attachments/assets/9a5f48f0-6091-417b-b192-700175c41a25)
-      </details>
-
-- [x] The user should be able to blacklist selected users.
-  - Use the network provider built-in tool.
-    - <details>
-      <summary><i>Click here to see result screenshot</i></summary>
-  
-      ![Image](https://github.com/user-attachments/assets/54ba8cf0-2fcf-4dc5-b486-76c0e86e41f8)
-      </details>
-
