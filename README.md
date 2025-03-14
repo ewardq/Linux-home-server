@@ -129,7 +129,7 @@ nano /etc/netplan/00-installer-config.yaml
 
 ---
 
-### \#5. Files backed up log and notification
+### \#6. Files backed up log and notification
 - [x] System should keep track of files backed up.
   - [5.1] Create a script to log size, date of modification and number of files
   - ```bash
@@ -161,11 +161,54 @@ nano /etc/netplan/00-installer-config.yaml
     ```bash
      crontab -e
     ```
-    ![Image](https://github.com/user-attachments/assets/f0008c71-a74d-4c3e-807c-1827638e348f)
+      - <details>
+        <summary><i>Click here to see result screenshot</i></summary>
+  
+        ![Image](https://github.com/user-attachments/assets/f0008c71-a74d-4c3e-807c-1827638e348f)
+        </details>
+    
 
 <details>
-<summary><i>Here's the result on the log file</i></summary>
+<summary><i>Click Here to see the result on the log file</i></summary>
   
 ![Image](https://github.com/user-attachments/assets/0f581032-54f2-4626-9343-8a354810ef5b)
 </details>
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#5. Network monitoring
+- [x] The user should be able to see which devices are connected to the network.
+
+  - To monitor the local network, you can use the built-in internet service provider tool. To access this tool, search in the back of your home router and search for the modem IP, user and password.
+![Image](https://github.com/user-attachments/assets/5e51ba13-852e-401b-b461-e280840dd73f)
+
+  - To monitor the local network on Windows, install `WakeMeOnLan`.
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/37f6b6d5-66fb-4390-83b7-cdd8945f22a7)
+      </details>
+
+  - To monitor the local network on the server side (Ubuntu), use `ip addr` to discover the server's network adapter
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/799ee7a6-6dac-4280-9b13-6c6899846503)
+      </details>
+
+  - `npmap <ip>/<mask>`
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/9a5f48f0-6091-417b-b192-700175c41a25)
+      </details>
+
+- [x] The user should be able to blacklist selected users.
+  - Use the network provider built-in tool.
+    - <details>
+      <summary><i>Click here to see result screenshot</i></summary>
+  
+      ![Image](https://github.com/user-attachments/assets/54ba8cf0-2fcf-4dc5-b486-76c0e86e41f8)
+      </details>
 
