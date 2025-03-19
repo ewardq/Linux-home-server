@@ -105,8 +105,7 @@ sudo ethtool -s <network_adapter> wol g
     </details>
 
 
-- [x] Make configuration persistent
-For Ubuntu, we have to configure the network adapter on the "netplan" folder:
+- [x] Make configuration persistent. For Ubuntu, we have to configure the network adapter on the "netplan" folder:
 ```bash
 sudo chmod u+w /etc/netplan/00-installer-config.yaml
 nano /etc/netplan/00-installer-config.yaml
