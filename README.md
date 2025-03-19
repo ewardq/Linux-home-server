@@ -39,11 +39,7 @@ ssh <user>@<ip>
 
 - [x] Configure folder location in Samba config file at the end of the file.
 `sudo nano /etc/samba/smb.conf`
-  - <details>
-    <summary><i>Click here to see result screenshot</i></summary>
-  
-    ![Image](https://github.com/user-attachments/assets/ac71b842-df74-4ae7-927c-44ee83c71076)
-    </details>
+  - ![Image](https://github.com/user-attachments/assets/ac71b842-df74-4ae7-927c-44ee83c71076)
 
 - [x] Add shared folder on Windows
   - <details>
