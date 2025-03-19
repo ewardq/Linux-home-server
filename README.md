@@ -24,29 +24,7 @@ ssh <user>@<ip>
 
 ---
 
-### \#2. Network files backup
-- [x] Selected files should be sent automatically to central hard drive each week.
-  - <details>
-    <summary><i>Click here to see result screenshot</i></summary>
-  
-    ![Image](https://github.com/user-attachments/assets/848d8fff-ab2f-4cd1-b68e-c8b7c171a7a6)
-    </details>
-
-![Image](https://github.com/user-attachments/assets/236793ed-6d3d-489a-b751-fc18dbf16180)
-
-- [x] Selected files should be sent to central hard drive when prompted.
-  - <details>
-    <summary><i>Click here to see result screenshot</i></summary>
-  
-    ![Image](https://github.com/user-attachments/assets/13209c54-7bef-4d44-a64b-867fe91521f1)
-    </details>
-
-
-<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
-
----
-
-### \#3. Install Samba
+### \#2. Install Samba
 - [x] Install Samba.
 `sudo apt install samba`
 
@@ -76,6 +54,26 @@ ssh <user>@<ip>
 
 - [x] Shared files ready to use!
 
+<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+---
+
+### \#3. Network files backup
+- [x] Selected files should be sent automatically to central hard drive each week.
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
+  
+    ![Image](https://github.com/user-attachments/assets/848d8fff-ab2f-4cd1-b68e-c8b7c171a7a6)
+    </details>
+
+![Image](https://github.com/user-attachments/assets/236793ed-6d3d-489a-b751-fc18dbf16180)
+
+- [x] Selected files should be sent to central hard drive when prompted.
+  - <details>
+    <summary><i>Click here to see result screenshot</i></summary>
+  
+    ![Image](https://github.com/user-attachments/assets/13209c54-7bef-4d44-a64b-867fe91521f1)
+    </details>
 
 <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 
