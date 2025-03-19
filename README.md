@@ -93,6 +93,7 @@ sudo ethtool <network_adapter>
 - [x] Enable Wake-on-LAN
 ```bash
 sudo ethtool <network_adapter> | grep "Wake-on"
+sudo ethtool -s <network_adapter> wol g
 ```
   - <details>
     <summary><i>Click here to see result screenshot</i></summary>
