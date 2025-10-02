@@ -1,0 +1,1 @@
+{"Tasks": {"total": 328, "running": 1, "sleeping": 227, "stopped": 0, "zombie": 0}, "%CPU": {"user": 3.0, "system": 1.0, "idle": 11.0}, "KiB Mem": {"total": 16067004, "free": 5883876, "used": 4746416}, "KiB Swap": {"total": 8388604, "free": 8388604, "used": 0}, "Timestamp": 1755313084}
