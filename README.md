@@ -17,6 +17,11 @@ It creates snapshots of the state of the system each 30 seconds (configurable):
     "KiB Mem": {"total": 16280636, "free": 335140, "used": 11621308},
     "KiB Swap": {"total": 16280636, "free": 335140, "used": 11621308},
     "Timestamp": 1624400255}
+
+## Ansible automatic configuration
+This Ansible playbook can be used to automatically setup what's shown on this repository. `ansible_hs_playbook.yaml`
+
+For Wake-on-LAN it's necessary to replace the `network_adapter` variable for the actual network adapter name on the ansible playbook and it's also necessary to enable the feature on the BIOS as shown in **section 4** of the setup on this repo. This section of the playbook only works on Ubuntu for now due to the fact that the network configuration file is different depending on the Linux distro. 
     
 ## Setup
 
