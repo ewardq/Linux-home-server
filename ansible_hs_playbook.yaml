@@ -1,0 +1,70 @@
+---
+- name: Setup NAS server with Samba, WOL, and backup logging
+  hosts: homeserver_test
+  become: true
+  vars:
+    samba_share_path: /media/myfiles
+    samba_user: "{{ ansible_user }}"   # Change if different user
+    network_adapter: enp1s0            # Replace with actual adapter
+    record_script_path: /usr/local/bin/record_shared_files.sh
+    backup_log_path: /media/shared_folder_backup.log
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Samba
+      apt:
+        name: samba
+        state: present
+
+    - name: Create shared directory
+      file:
+        path: "{{ samba_share_path }}"
+        state: directory
+        owner: "{{ samba_user }}"
+        group: "{{ samba_user }}"
+        mode: '0755'
+
+    - name: Configure Samba share
+      blockinfile:
+        path: /etc/samba/smb.conf
+        block: |
+          [myfiles]
+          path = {{ samba_share_path }}
+          writeable = yes
+          public = no
+
+    - name: Ensure Samba user exists
+      command: "smbpasswd -a -s {{ samba_user }}"
+      args:
+        stdin: "{{ samba_user_password | default('password') }}\n{{ samba_user_password | default('password') }}\n"
+      register: smbpasswd_result
+      changed_when: "'Added user' in smbpasswd_result.stdout"
+
+    - name: Enable Wake-on-LAN
+      command: "ethtool -s {{ network_adapter }} wol g"
+
+    - name: Persist Wake-on-LAN in Netplan config
+      lineinfile:
+        path: /etc/netplan/00-installer-config.yaml
+        regexp: '^(.*wakeonlan *: *).*'
+        line: '\1true'
+        backrefs: yes
+
+    - name: Create backup logging script
+      copy:
+        dest: "{{ record_script_path }}"
+        mode: '0755'
+        content: |
+          #!/bin/bash
+          echo "=======================" >> {{ backup_log_path }}
+          ls -lh {{ samba_share_path }}/ >> {{ backup_log_path }}
+
+    - name: Create cron job for logging script
+      cron:
+        name: "Record shared files daily"
+        minute: "59"
+        hour: "*"
+        job: "{{ record_script_path }}"
