@@ -22,7 +22,17 @@ It creates snapshots of the state of the system each 30 seconds (configurable):
 This Ansible playbook can be used to automatically setup what's shown on this repository. `ansible_hs_playbook.yaml`
 
 For Wake-on-LAN it's necessary to replace the `network_adapter` variable for the actual network adapter name on the ansible playbook and it's also necessary to enable the feature on the BIOS as shown in **section 4** of the setup on this repo. This section of the playbook only works on Ubuntu for now due to the fact that the network configuration file is different depending on the Linux distro. 
-    
+
+## SonarQube analysis
+[![SonarQube analysis](https://github.com/ewardq/Linux-home-server/actions/workflows/sonarqube_analysis.yaml/badge.svg?branch=main)](https://github.com/ewardq/Linux-home-server/actions/workflows/sonarqube_analysis.yaml)
+
+<img src="./repo_images/SonarQube.svg">
+
+|Workflow output |Coverage report |
+|---	|---	|
+|<img width="1355" height="363" alt="image" src="https://github.com/user-attachments/assets/92b53126-3093-4b47-823a-b02e3feae6c9" /> |<img width="1353" height="241" alt="image" src="https://github.com/user-attachments/assets/3702dd58-a62f-487a-bb2e-22b36351db34" /> |
+
+  
 ## Setup
 
 ### \#1. SSH access from home network
